@@ -19,11 +19,10 @@ function chunks (list, size) {
 }
 
 module.exports = (props) => {
-  const noFiles = props.totalFileCount === 0
-  const dashboardFilesClass = classNames(
-    'uppy-Dashboard-files',
-    { 'uppy-Dashboard-files--noFiles': noFiles }
-  )
+  const dashboardFilesClass = classNames({
+    'uppy-Dashboard-files': true,
+    'uppy-Dashboard-files--noFiles': props.totalFileCount === 0
+  })
 
   // 190px height + 2 * 5px margin
   const rowHeight = 200

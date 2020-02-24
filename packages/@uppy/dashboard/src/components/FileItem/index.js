@@ -77,7 +77,6 @@ module.exports = class FileItem extends Component {
             uploadInProgressOrComplete={uploadInProgressOrComplete}
             removeFile={this.props.removeFile}
             toggleFileCard={this.props.toggleFileCard}
-
             i18n={this.props.i18n}
             log={this.props.log}
             info={this.props.info}

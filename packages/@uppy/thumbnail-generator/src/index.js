@@ -388,7 +388,6 @@ module.exports = class ThumbnailGenerator extends Plugin {
       this.uppy.off('file-added', this.onFileAdded)
       this.uppy.off('restored', this.onRestored)
     }
-
     if (this.opts.waitForThumbnailsBeforeUpload) {
       this.uppy.removePreProcessor(this.waitUntilAllProcessed)
     }

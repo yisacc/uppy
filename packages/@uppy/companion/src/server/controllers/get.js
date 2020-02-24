@@ -1,5 +1,6 @@
 const Uploader = require('../Uploader')
 const logger = require('../logger')
+const { errorToResponse } = require('../provider/error')
 
 function get (req, res, next) {
   const providerName = req.params.providerName
@@ -8,9 +9,13 @@ function get (req, res, next) {
   const provider = req.companion.provider
 
   // get the file size before proceeding
-  provider.size({ id, token }, (err, size) => {
+  provider.size({ id, token, query: req.query }, (err, size) => {
     if (err) {
-      return err.isAuthError ? res.sendStatus(401) : next(err)
+      const errResp = errorToResponse(err)
+      if (errResp) {
+        return res.status(errResp.code).json({ message: errResp.message })
+      }
+      return next(err)
     }
 
     if (!size) {
